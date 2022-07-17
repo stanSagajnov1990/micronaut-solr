@@ -15,6 +15,10 @@ repositories {
 }
 
 dependencies {
+    implementation(project(":domain"))
+    implementation(project(":persistence"))
+    implementation(project(":boundary"))
+
     kapt("io.micronaut:micronaut-http-validation")
     implementation("io.micronaut:micronaut-http-client")
     implementation("io.micronaut:micronaut-jackson-databind")
