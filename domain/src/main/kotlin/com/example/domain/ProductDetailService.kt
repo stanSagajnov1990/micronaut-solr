@@ -15,6 +15,6 @@ class ProductDetailService {
     }
 
     fun getProductDetail(sku: String) {
-        solrRepository.findBySku(sku)
+//        solrRepository.findBySku(sku)
     }
 }

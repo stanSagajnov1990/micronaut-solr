@@ -2,23 +2,25 @@ package com.example.solr.data
 
 import org.apache.solr.client.solrj.beans.Field
 
-data class DetailData(
+data class DetailData @JvmOverloads constructor(
     @Field
-    val title: String,
+    var id: String? = null,
     @Field
-    val description: String,
+    var title: String? = null,
     @Field
-    val price: Int,
+    var description: String? = null,
     @Field
-    val averagePrice: Int,
+    var price: Int = 0,
     @Field
-    val currency: String,
+    var averagePrice: Int = 0,
     @Field
-    val lowestPrice: Int,
+    var currency: String? = null,
     @Field
-    val highestPrice: Int,
+    var lowestPrice: Int = 0,
     @Field
-    val medianPricer: Int,
+    var highestPrice: Int = 0,
     @Field
-    val occurrenceCount: Int
+    var medianPricer: Int = 0,
+    @Field
+    var occurrenceCount: Int = 0
 )
