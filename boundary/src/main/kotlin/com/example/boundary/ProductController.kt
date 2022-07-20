@@ -1,8 +1,8 @@
 package com.example.boundary;
 
 import com.example.boundary.dto.mapper.ProductOutDtoMapper
-import com.example.boundary.dto.out.DetailOutDto
-import com.example.boundary.dto.out.ProductOutDto
+import com.example.boundary.dto.outgoing.DetailOutDto
+import com.example.boundary.dto.outgoing.ProductOutDto
 import com.example.domain.ProductDetailService
 import io.micronaut.http.MediaType
 import io.micronaut.http.annotation.Controller

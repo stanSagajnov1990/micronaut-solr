@@ -1,6 +1,6 @@
 package com.example.boundary.dto.mapper
 
-import com.example.boundary.dto.out.ProductOutDto
+import com.example.boundary.dto.outgoing.ProductOutDto
 import com.example.domain.ProductDetail
 import org.mapstruct.Mapper
 import org.mapstruct.ReportingPolicy
