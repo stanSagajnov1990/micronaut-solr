@@ -1,6 +1,5 @@
 package com.example.solr
 
-import com.example.solr.data.DetailData
 import com.example.solr.data.ProductDocument
 import jakarta.inject.Singleton
 import org.apache.solr.client.solrj.SolrClient
@@ -13,16 +12,14 @@ import kotlin.reflect.full.memberProperties
 @Singleton
 class SolrRepository {
 
-    private val client: SolrClient = Http2SolrClient.Builder("http://localhost:8983/solr/collection3").build()
+    private val client: SolrClient = Http2SolrClient.Builder("http://localhost:8983/solr/collection1").build()
 
     fun populate() {
         for (i in 0..999) {
             val productDocument = ProductDocument(
                 "sku-$i",
-                listOf("sku-$i"),
-                listOf(
-                    DetailData("cement-$i", "cement-$i", "", i, i, "EUR", i, i, i, i)
-                )
+                "sku-$i",
+                "cement-$i", "cement-$i", i.toFloat(), i.toFloat(), "EUR", i.toFloat(), i.toFloat(), i.toFloat(), i
             )
 //            val doc = SolrInputDocument()
 //            doc.addField("cat", "book")
@@ -46,21 +43,26 @@ class SolrRepository {
     }
 
     fun add(productDocument: ProductDocument) {
-        val doc = productDocument.toSolrInputDocument()
-        doc.addField("id", productDocument.sku)
+//        val doc = productDocument.toSolrInputDocument()
+//        doc.addField("id", productDocument.sku)
 
-        client.add(doc)
+        client.addBean(productDocument)
         client.commit()
     }
 
-    fun findBySku(sku: String): List<ProductDocument> {
+    fun findOneBySku(sku: String): ProductDocument {
         val queryParamMap: MutableMap<String, String> = HashMap()
         queryParamMap["q"] = """sku:"$sku"~1"""
-        queryParamMap["fl"] = "id, sku, [child], averagePrice"
         queryParamMap["sort"] = "id asc"
         val queryParams = MapSolrParams(queryParamMap)
 
-        return client.query(queryParams).getBeans(ProductDocument::class.java)
+        val productDocuments = client.query(queryParams).getBeans(ProductDocument::class.java)
+
+        if (productDocuments.size == 1) {
+            return productDocuments[0]
+        } else {
+            throw RuntimeException("the requested query returns either too many or no documents");
+        }
     }
 
     fun deleteById(id: String) {

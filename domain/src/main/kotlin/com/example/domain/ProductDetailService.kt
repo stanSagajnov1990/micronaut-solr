@@ -1,7 +1,7 @@
 package com.example.domain
 
+import com.example.domain.mapper.ProductDetailMapper
 import com.example.solr.SolrRepository
-import com.example.solr.data.ProductDocument
 import jakarta.inject.Inject
 import jakarta.inject.Singleton
 
@@ -10,11 +10,16 @@ class ProductDetailService {
 
     @Inject private lateinit var solrRepository: SolrRepository
 
-    fun addProductDetail(productDocument: ProductDocument) {
-        solrRepository.add(productDocument)
+    @Inject private lateinit var productDetailMapper: ProductDetailMapper
+
+    fun addProductDetail(productDocument: ProductDetail)//: ProductDetail {
+    {
+        val productDocument1 = productDetailMapper.productDetailToProductDocument(productDocument)
+        return solrRepository.add(productDocument1)
     }
 
-    fun getProductDetail(sku: String) {
-//        solrRepository.findBySku(sku)
+    fun getProductDetail(sku: String): ProductDetail {
+        val productDocument = solrRepository.findOneBySku(sku)
+        return productDetailMapper.authorToAuthorDto(productDocument)
     }
 }

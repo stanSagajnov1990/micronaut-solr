@@ -1,6 +1,5 @@
 package com.example.solr
 
-import com.example.solr.data.DetailData;
 import com.example.solr.data.ProductDocument
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,10 +23,8 @@ internal class SolrRepositoryTest {
         val i = 1
         val productDocument = ProductDocument(
             "cement-$i",
-            listOf("cement-$i"),
-            listOf(
-                DetailData("cement-$i", "cement-$i", "", i, i, "EUR", i, i, i, i)
-            )
+            "cement-$i",
+            "cement-$i", "cement-$i", i.toFloat(), i.toFloat(), "EUR", i.toFloat(), i.toFloat(), i.toFloat(), i
         )
         solrRepository?.add(productDocument)
 //        solrService?.add()
@@ -52,10 +49,8 @@ internal class SolrRepositoryTest {
         val solrRepository = SolrRepository()
         val productDocument = ProductDocument(
             "cement",
-            listOf("cement"),
-            listOf(
-                DetailData("Zement", "Zement", "", 5, 5, "EUR", 5, 5, 5, 5)
-            )
+            "cement",
+                "Zement", "Zement", 5f, 5f, "EUR", 5f, 5f, 5f, 5
         )
         val solrInputDocument = productDocument.toSolrInputDocument()
 

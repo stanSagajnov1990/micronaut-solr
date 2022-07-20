@@ -8,6 +8,6 @@ data class Detail (
     val averagePrice: Int,
     val lowestPrice: Int,
     val highestPrice: Int,
-    val medianPricer: Int,
+    val medianPrice: Int,
     val occurrenceCount: Int
 )
