@@ -1,5 +1,6 @@
 package com.example.boundary.dto.mapper
 
+import com.example.boundary.dto.incoming.ProductInDto
 import com.example.boundary.dto.outgoing.ProductOutDto
 import com.example.domain.ProductDetail
 import org.mapstruct.Mapper
@@ -9,5 +10,7 @@ import org.mapstruct.ReportingPolicy
 interface ProductOutDtoMapper {
 
     fun productDetailToProductOutDto(productDetail: ProductDetail): ProductOutDto
+
+    fun productInDtoToProductDetail(productDetail: ProductInDto): ProductDetail
 
 }
