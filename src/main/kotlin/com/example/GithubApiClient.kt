@@ -1,6 +1,6 @@
 package com.example
 
-import com.example.boundary.GithubRelease
+import com.example.boundary.PricesDTO
 import io.micronaut.http.HttpHeaders.ACCEPT
 import io.micronaut.http.HttpHeaders.USER_AGENT
 import io.micronaut.http.annotation.Get
@@ -17,5 +17,5 @@ import org.reactivestreams.Publisher
 interface GithubApiClient {
 
     @Get("/repos/\${github.organization}/\${github.repo}/releases")
-    fun fetchReleases(): Publisher<GithubRelease?>?
+    fun fetchReleases(): Publisher<PricesDTO?>?
 }

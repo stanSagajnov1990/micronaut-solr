@@ -1,7 +1,6 @@
 package com.example
 
-import com.example.boundary.GithubRelease
-import io.micronaut.core.type.Argument
+import com.example.boundary.PricesDTO
 import io.micronaut.http.HttpHeaders.ACCEPT
 import io.micronaut.http.HttpHeaders.USER_AGENT
 import io.micronaut.http.HttpRequest
@@ -22,10 +21,10 @@ class GithubLowLevelClient(@param:Client(GithubConfiguration.GITHUB_API_URL) pri
 //        .path("releases")
         .build()
 
-    fun fetchReleases(): Mono<GithubRelease> {
+    fun fetchPrices(): Mono<PricesDTO> {
         val req: HttpRequest<*> = HttpRequest.GET<String>(uri) // <4>
             .header(USER_AGENT, "Micronaut HTTP Client") // <5>
             .header(ACCEPT, "application/vnd.github.v3+json, application/json") // <6>
-        return Mono.from(httpClient.retrieve(req, GithubRelease::class.java)) // <7>
+        return Mono.from(httpClient.retrieve(req, PricesDTO::class.java)) // <7>
     }
 }
