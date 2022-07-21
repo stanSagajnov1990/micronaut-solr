@@ -13,7 +13,9 @@ internal class ProductDetailServiceTest {
 
     @Test
     fun addProductDetail() {
-        productDetailService.saveProductDetail(ProductDetail("sku-1", "sku-1", Detail("sku-1", "sku-1",
+//        val productDetail = productDetailService.getProductDetail("1123")
+
+        productDetailService.saveProductDetail(ProductDetail("sku-1123", "sku-1123", Detail("sku-1", "sku-1",
             1.0, "EUR", 1.0, 1.0, 1.0, 1.0, 1)))
     }
 

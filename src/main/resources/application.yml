@@ -1,7 +1,9 @@
 micronaut:
   application:
     name: manufactumMicronaut
-github:
-  organization: micronaut-projects
-  repo: micronaut-core
+ai:
+  url: micronaut-projects
 
+solr:
+  url: http://localhost:8983
+  collection: collection1

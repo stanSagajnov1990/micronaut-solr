@@ -1,9 +1,9 @@
-package com.example.boundary;
+package com.example.boundary.rest;
 
-import com.example.boundary.dto.incoming.ProductInDto
-import com.example.boundary.dto.mapper.ProductOutDtoMapper
-import com.example.boundary.dto.outgoing.DetailOutDto
-import com.example.boundary.dto.outgoing.ProductOutDto
+import com.example.boundary.rest.dto.incoming.ProductInDto
+import com.example.boundary.rest.dto.mapper.ProductOutDtoMapper
+import com.example.boundary.rest.dto.outgoing.DetailOutDto
+import com.example.boundary.rest.dto.outgoing.ProductOutDto
 import com.example.domain.ProductDetailService
 import io.micronaut.http.MediaType
 import io.micronaut.http.annotation.Body

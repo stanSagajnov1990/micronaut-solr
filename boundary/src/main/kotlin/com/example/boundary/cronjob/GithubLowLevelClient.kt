@@ -1,6 +1,5 @@
 package com.example.boundary.cronjob
 
-import com.example.boundary.PricesDTO
 import io.micronaut.http.HttpHeaders.ACCEPT
 import io.micronaut.http.HttpHeaders.USER_AGENT
 import io.micronaut.http.HttpRequest
@@ -12,9 +11,10 @@ import reactor.core.publisher.Mono
 import java.net.URI
 
 @Singleton
- // <1>
-class GithubLowLevelClient(@param:Client(GithubConfiguration.GITHUB_API_URL) private val httpClient: HttpClient,  // <2>
-                           configuration: GithubConfiguration) {  // <3>
+class GithubLowLevelClient(
+    configuration: AIServiceConfiguration,
+    @param:Client(AIServiceConfiguration.AI_API_URL) private val httpClient: HttpClient
+) {
 
     fun fetchPrices(sku: String): Mono<PricesDTO> {
         val uri: URI = UriBuilder.of("/ai/skus/$sku/prices").build()

@@ -1,4 +1,4 @@
-package com.example.boundary
+package com.example.boundary.cronjob
 
 import io.micronaut.core.annotation.Introspected
 

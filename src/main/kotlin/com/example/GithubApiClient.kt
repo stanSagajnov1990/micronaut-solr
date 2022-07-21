@@ -1,6 +1,6 @@
 package com.example
 
-import com.example.boundary.PricesDTO
+import com.example.boundary.cronjob.PricesDTO
 import io.micronaut.http.HttpHeaders.ACCEPT
 import io.micronaut.http.HttpHeaders.USER_AGENT
 import io.micronaut.http.annotation.Get

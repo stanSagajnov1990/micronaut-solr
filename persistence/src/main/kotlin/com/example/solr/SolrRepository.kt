@@ -1,5 +1,6 @@
 package com.example.solr
 
+import com.example.domain.SolrConfiguration
 import com.example.solr.data.ProductDocument
 import jakarta.inject.Singleton
 import org.apache.solr.client.solrj.SolrClient
@@ -10,9 +11,9 @@ import kotlin.reflect.full.memberProperties
 
 
 @Singleton
-class SolrRepository {
+class SolrRepository(val solrConfiguration: SolrConfiguration) {
 
-    private val client: SolrClient = Http2SolrClient.Builder("http://localhost:8983/solr/collection1").build()
+    private val client: SolrClient = Http2SolrClient.Builder("${solrConfiguration.url}/solr/${solrConfiguration.collection}").build()
 
     fun populate() {
         for (i in 0..9) {

@@ -1,4 +1,4 @@
-package com.example.boundary.dto.incoming
+package com.example.boundary.rest.dto.incoming
 
 class ProductInDto (
     val sku: String,

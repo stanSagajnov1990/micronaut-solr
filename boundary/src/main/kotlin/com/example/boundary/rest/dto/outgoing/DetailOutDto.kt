@@ -1,4 +1,4 @@
-package com.example.boundary.dto.outgoing
+package com.example.boundary.rest.dto.outgoing
 
 data class DetailOutDto(
     val title: String,
