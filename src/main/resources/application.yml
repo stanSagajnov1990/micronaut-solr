@@ -1,3 +1,7 @@
 micronaut:
   application:
     name: manufactumMicronaut
+github:
+  organization: micronaut-projects
+  repo: micronaut-core
+

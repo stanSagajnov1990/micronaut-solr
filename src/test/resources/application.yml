@@ -1,1 +1,6 @@
 jackson.json-view.enabled: true
+
+github:
+  organization: micronaut-projects
+  repo: micronaut-core
+
