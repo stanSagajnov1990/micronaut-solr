@@ -2,6 +2,7 @@ package com.example.domain
 
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest
 import jakarta.inject.Inject
+import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 
 @MicronautTest
@@ -12,15 +13,25 @@ internal class ProductDetailServiceTest {
 
 
     @Test
-    fun addProductDetail() {
-//        val productDetail = productDetailService.getProductDetail("1123")
+    fun saveProductDetail() {
+        val skuId = "sku-1123"
+        val productDetail = productDetailService.getProductDetail(skuId)
 
-        productDetailService.saveProductDetail(ProductDetail("sku-1123", "sku-1123", Detail("sku-1", "sku-1",
+        productDetailService.saveProductDetail(ProductDetail("sku-1123", skuId, Detail("sku-1", "sku-1",
             1.0, "EUR", 1.0, 1.0, 1.0, 1.0, 1)))
+
+        //assertions
+        val productDetail2 = productDetailService.getProductDetail(skuId)
+        Assertions.assertThat(productDetail2).isNotNull
+
+        //clean up
+        productDetailService.removeProductDetail(productDetail2!!)
     }
 
     @Test
     fun getProductDetail() {
-        productDetailService.getProductDetail("sku-1")
+        val productDetail = productDetailService.getProductDetail("sku-1")
+
+        Assertions.assertThat(productDetail?.sku).isEqualTo("sku-1")
     }
 }

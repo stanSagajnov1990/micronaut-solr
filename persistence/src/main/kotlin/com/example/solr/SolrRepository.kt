@@ -50,7 +50,7 @@ class SolrRepository(val solrConfiguration: SolrConfiguration) {
         client.commit()
     }
 
-    fun findOneBySku(sku: String): ProductDocument {
+    fun findOneBySku(sku: String): ProductDocument? {
         val queryParamMap: MutableMap<String, String> = HashMap()
         queryParamMap["q"] = """sku:"$sku"~1"""
         queryParamMap["sort"] = "id asc"
@@ -58,10 +58,10 @@ class SolrRepository(val solrConfiguration: SolrConfiguration) {
 
         val productDocuments = client.query(queryParams).getBeans(ProductDocument::class.java)
 
-        if (productDocuments.size == 1) {
-            return productDocuments[0]
-        } else {
+        if (productDocuments.size > 1) {
             throw RuntimeException("the requested query returns either too many or no documents");
+        } else {
+            return productDocuments.firstOrNull()
         }
     }
 

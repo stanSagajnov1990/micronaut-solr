@@ -1,5 +1,8 @@
 package com.example.boundary.rest.dto.outgoing
 
+import io.micronaut.core.annotation.Introspected
+
+@Introspected
 data class DetailOutDto(
     val title: String,
     val description: String,

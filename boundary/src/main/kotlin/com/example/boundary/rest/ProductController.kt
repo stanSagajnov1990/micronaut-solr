@@ -5,14 +5,16 @@ import com.example.boundary.rest.dto.mapper.ProductOutDtoMapper
 import com.example.boundary.rest.dto.outgoing.DetailOutDto
 import com.example.boundary.rest.dto.outgoing.ProductOutDto
 import com.example.domain.ProductDetailService
+import io.micronaut.http.HttpResponse
 import io.micronaut.http.MediaType
 import io.micronaut.http.annotation.Body
 import io.micronaut.http.annotation.Controller
 import io.micronaut.http.annotation.Get
 import io.micronaut.http.annotation.Post
+import io.micronaut.http.hateoas.JsonError
 import jakarta.inject.Inject
 
-@Controller("/api/product/detail")
+@Controller("/api/product")
 class ProductController {
 
     @Inject
@@ -20,12 +22,6 @@ class ProductController {
 
     @Inject
     private lateinit var productDtoMapper: ProductOutDtoMapper
-
-    @Get(produces = [MediaType.APPLICATION_JSON], uri = "/{sku}")
-    fun index(sku: String): ProductOutDto {
-        val productDetail = productDetailService.getProductDetail(sku)
-        return productDtoMapper.productDetailToProductOutDto(productDetail)
-    }
 
     @Post(uri = "/add")
     fun post(@Body productInDto: ProductInDto): ProductOutDto {

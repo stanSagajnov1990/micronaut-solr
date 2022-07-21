@@ -1,17 +1,16 @@
 package com.example.solr
 
 import com.example.solr.data.ProductDocument
+import io.micronaut.test.extensions.junit5.annotation.MicronautTest
+import jakarta.inject.Inject
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+@MicronautTest
 internal class SolrRepositoryTest {
 
+    @Inject
     private var solrRepository: SolrRepository? = null
-
-    @BeforeEach
-    fun setup() {
-        solrRepository = SolrRepository()
-    }
 
     @Test
     fun populate() {

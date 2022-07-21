@@ -17,9 +17,21 @@ class ProductDetailService {
         return solrRepository.add(productDocument1)
     }
 
-    fun getProductDetail(sku: String): ProductDetail {
+    fun removeProductDetail(productDetail: ProductDetail) {
+        if (productDetail.id == null)
+            throw RuntimeException("the supplied productDetail doesn't possess an id")
+
+        solrRepository.deleteById(productDetail.id!!)
+    }
+
+    fun getProductDetail(sku: String): ProductDetail? {
         val productDocument = solrRepository.findOneBySku(sku)
-        return productDetailMapper.authorToAuthorDto(productDocument)
+
+        return if (productDocument != null) {
+            productDetailMapper.authorToAuthorDto(productDocument)
+        } else {
+            null
+        }
     }
 
     fun getProductDetails(start: Int, rows:Int): List<ProductDetail> {
