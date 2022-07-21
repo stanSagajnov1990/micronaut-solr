@@ -13,7 +13,8 @@ internal class ProductDetailServiceTest {
 
     @Test
     fun addProductDetail() {
-        productDetailService.addProductDetail(ProductDetail("sku-1", "sku-1", Detail("sku-1", "sku-1", 1, "EUR", 1, 1, 1, 1, 1)))
+        productDetailService.saveProductDetail(ProductDetail("sku-1", "sku-1", Detail("sku-1", "sku-1",
+            1.0, "EUR", 1.0, 1.0, 1.0, 1.0, 1)))
     }
 
     @Test

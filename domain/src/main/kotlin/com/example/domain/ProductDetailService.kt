@@ -12,8 +12,7 @@ class ProductDetailService {
 
     @Inject private lateinit var productDetailMapper: ProductDetailMapper
 
-    fun addProductDetail(productDocument: ProductDetail)//: ProductDetail {
-    {
+    fun saveProductDetail(productDocument: ProductDetail) {
         val productDocument1 = productDetailMapper.productDetailToProductDocument(productDocument)
         return solrRepository.add(productDocument1)
     }
@@ -21,5 +20,10 @@ class ProductDetailService {
     fun getProductDetail(sku: String): ProductDetail {
         val productDocument = solrRepository.findOneBySku(sku)
         return productDetailMapper.authorToAuthorDto(productDocument)
+    }
+
+    fun getProductDetails(start: Int, rows:Int): List<ProductDetail> {
+        val productDetails =  solrRepository.findByRange(start, rows)
+        return productDetails.map { productDetailMapper.authorToAuthorDto(it) }
     }
 }

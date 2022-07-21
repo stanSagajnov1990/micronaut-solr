@@ -15,12 +15,11 @@ class SolrRepository {
     private val client: SolrClient = Http2SolrClient.Builder("http://localhost:8983/solr/collection1").build()
 
     fun populate() {
-        for (i in 0..999) {
+        for (i in 0..9) {
             val productDocument = ProductDocument(
                 "sku-$i",
                 "sku-$i",
-                "cement-$i", "cement-$i", i.toFloat(), i.toFloat(), "EUR", i.toFloat(), i.toFloat(), i.toFloat(), i
-            )
+                "cement-$i", "cement-$i", price = i.toFloat(), "EUR")
 //            val doc = SolrInputDocument()
 //            doc.addField("cat", "book")
 //            doc.addField("id", "book-$i")
@@ -63,6 +62,17 @@ class SolrRepository {
         } else {
             throw RuntimeException("the requested query returns either too many or no documents");
         }
+    }
+
+    fun findByRange(start: Int, rows: Int): List<ProductDocument> {
+        val queryParamMap: MutableMap<String, String> = HashMap()
+        queryParamMap["q"] = """*:*"""
+        queryParamMap["start"] = start.toString()
+        queryParamMap["rows"] = rows.toString()
+        queryParamMap["sort"] = "id asc"
+        val queryParams = MapSolrParams(queryParamMap)
+
+        return client.query(queryParams).getBeans(ProductDocument::class.java)
     }
 
     fun deleteById(id: String) {

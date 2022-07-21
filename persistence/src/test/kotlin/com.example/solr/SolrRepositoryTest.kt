@@ -24,7 +24,7 @@ internal class SolrRepositoryTest {
         val productDocument = ProductDocument(
             "cement-$i",
             "cement-$i",
-            "cement-$i", "cement-$i", i.toFloat(), i.toFloat(), "EUR", i.toFloat(), i.toFloat(), i.toFloat(), i
+            "cement-$i", "cement-$i", i.toFloat(), "EUR", i.toFloat(), i.toFloat(), i.toFloat(), i.toFloat(), i
         )
         solrRepository?.add(productDocument)
 //        solrService?.add()
@@ -40,7 +40,7 @@ internal class SolrRepositoryTest {
     @Test
     fun findBySku() {
         val solrRepository = SolrRepository()
-        val results = solrRepository.findBySku("sku-1")
+        val results = solrRepository.findOneBySku("sku-1")
         println(results)
     }
 
@@ -50,7 +50,7 @@ internal class SolrRepositoryTest {
         val productDocument = ProductDocument(
             "cement",
             "cement",
-                "Zement", "Zement", 5f, 5f, "EUR", 5f, 5f, 5f, 5
+                "Zement", "Zement", 5f, "EUR", 5f, 5f, 5f, 5f, 5
         )
         val solrInputDocument = productDocument.toSolrInputDocument()
 

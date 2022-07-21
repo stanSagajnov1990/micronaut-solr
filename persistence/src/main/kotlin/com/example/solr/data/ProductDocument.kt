@@ -18,11 +18,11 @@ class ProductDocument @JvmOverloads constructor(
     @Field
     var price: Float? = null,
 
-    @Field("averageprice")
-    var averagePrice: Float? = null,
-
     @Field
     var currency: String? = null,
+
+    @Field("averageprice")
+    var averagePrice: Float? = null,
 
     @Field("lowestprice")
     var lowestPrice: Float? = null,

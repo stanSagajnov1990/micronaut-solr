@@ -3,11 +3,11 @@ package com.example.domain
 data class Detail (
     val title: String,
     val description: String,
-    val price: Int,
+    val price: Double,
     val currency: String,
-    val averagePrice: Int,
-    val lowestPrice: Int,
-    val highestPrice: Int,
-    val medianPrice: Int,
-    val occurrenceCount: Int
+    var averagePrice: Double,
+    var lowestPrice: Double,
+    var highestPrice: Double,
+    var medianPrice: Double,
+    var occurrenceCount: Int
 )
